@@ -48,7 +48,7 @@ def validUTF8(data):
             if expected_continuation_bytes == 0:
                 continue
 
-            # If the number of continuation bytes is not
+            # Validate if the number of continuation bytes is not
             # between 2 and 4, the sequence is invalid
             if expected_continuation_bytes == 1 or\
                     expected_continuation_bytes > 4:
@@ -61,11 +61,10 @@ def validUTF8(data):
             if not (byte & UTF8_BIT_1 and not (byte & UTF8_BIT_2)):
                 return False
 
-        # Decrement the expected number of continuation bytes
+        # to reduce the expected number of continuation bytes
         expected_continuation_bytes -= 1
 
-    # If we have processed all bytes and are not expecting
-    # any more continuation bytes, the sequence is valid
+    
     if expected_continuation_bytes == 0:
         return True
     else:
